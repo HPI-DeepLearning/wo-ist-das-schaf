@@ -52,7 +52,7 @@ class ThresholdingPipe(Pipe):
         return np.array(min_color, dtype=np.int32), np.array(max_color, dtype=np.int32)
 
     def threshold(self, image, min_color, max_color):
-        return image
+        return cv2.inRange(image, min_color, max_color)
 
     def flow(self, image):
         color_info = self.config_window.get_config()
@@ -82,7 +82,7 @@ class NaiveThresholdingPipe(ThresholdingPipe):
 
 class ThresholdPipeType(PipeType):
     priority = 30
-    implementations = [NoOpPipe, NaiveThresholdingPipe]
+    implementations = [NoOpPipe, ThresholdingPipe, NaiveThresholdingPipe]
 
     @staticmethod
     def create_config(config_frame, pipe):
