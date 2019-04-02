@@ -26,7 +26,6 @@ class ColorPicker(tk.Toplevel):
         self.create_buttons(tolerance_frame)
 
         self.create_included_colors_viewer()
-        self.hide()
 
         self.protocol("WM_DELETE_WINDOW", self.hide)
 
