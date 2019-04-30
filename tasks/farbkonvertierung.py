@@ -5,35 +5,37 @@ def hsv_to_rgb(h, s, v):
         Ihr könnt eure Implementierung auf diesen Algorithmus basieren:
             https://de.wikipedia.org/wiki/HSV-Farbraum#Umrechnung_HSV_in_RGB
     """
-    # Wenn ihr selber implementiert, dann nehmt die nächste Zeile raus, sonst passiert nichts ;)
-    return h, s, v
 
     # s und v auf den Bereich 0 bis 1 bringen
     # Eingabewerte sind im Bereich von 0 bis 100
-    # s =
-    # v =
+    s = s / 100
+    v = v / 100
 
     # Bestimmung des Grundfarbenintervalls und des Werts im Intervall
-    # h_i =
-    # f =
+    h_i = int(h // 60)
+    f = (h / 60 - h_i)
 
     # Bestimmung der Hilfswerte
-    # p =
-    # q =
-    # t =
+    p = v * (1 - s)
+    q = v * (1 - s * f)
+    t = v * (1 - s * (1 - f))
 
     # Konstruktion des Farbkreises zur Bestimmung der Farbe im RGB Farbraum
-    # farbkreis = (
-    #     (v, t, p),
-    #     # ...
-    # )
+    farbkreis = (
+        (v, t, p),
+        (q, v, p),
+        (p, v, t),
+        (p, q, v),
+        (t, p, v),
+        (v, p, q),
+    )
 
     # Bestimmung der RGB Werte
-    # rgb = farbkreis[h_i % 6]
+    rgb = farbkreis[h_i % 6]
 
     # Skalierung der Farbwere vom Bereich 0 bis 1 in den Bereich 0 bis 255
-    # rgb =
-    # return rgb
+    rgb = tuple(int(k * 255) for k in rgb)
+    return rgb
 
 
 def calculate_h(r, g, b, min_value, max_value):
