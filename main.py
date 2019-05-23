@@ -60,6 +60,8 @@ class MainWindow(tk.Frame):
                 print(e)
                 self.stop.set()
                 self.stop_gui_update.set()
+                self.processing_thread = None
+                self.process_button.configure(text="Starte Pipeline!")
 
     def periodic_image_display_update(self):
         self.display.maybe_change_image()
