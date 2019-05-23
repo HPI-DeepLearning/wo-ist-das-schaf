@@ -6,7 +6,7 @@ import libs.tkColorPicker.tkcolorpicker.colorpicker_window as tkcolorpicker
 import libs.tkColorPicker.tkcolorpicker.colorchooser as colorchooser
 import libs.tkColorPicker.tkcolorpicker.colorsquare as colorsquare
 import libs.tkColorPicker.tkcolorpicker.gradientbar as gradientbar
-import tasks.farbkonvertierung as farbkonvertierung
+import tasks.farbkonvertierung_loesung as farbkonvertierung
 from pipeline.no_op_pipe import NoOpPipe
 
 from pipeline.pipe import Pipe, PipeType
