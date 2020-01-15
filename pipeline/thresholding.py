@@ -6,9 +6,12 @@ import libs.tkColorPicker.tkcolorpicker.colorpicker_window as tkcolorpicker
 import libs.tkColorPicker.tkcolorpicker.colorchooser as colorchooser
 import libs.tkColorPicker.tkcolorpicker.colorsquare as colorsquare
 import libs.tkColorPicker.tkcolorpicker.gradientbar as gradientbar
-import tasks.farbkonvertierung_loesung as farbkonvertierung
-from pipeline.no_op_pipe import NoOpPipe
 
+# um die eigene Implementierung zu verwenden, einfach die nächste Zeile aus- und die übernachste Zeile einkommentieren!
+# import tasks.farbkonvertierung as farbkonvertierung
+import tasks.farbkonvertierung_selbst_implementiert as farbkonvertierung
+
+from pipeline.no_op_pipe import NoOpPipe
 from pipeline.pipe import Pipe, PipeType
 
 # monkey patch tcolorpicker lib

@@ -1,82 +1,17 @@
 def hsv_to_rgb(h, s, v):
     """
-        Eingabe: Der Wert im HSV Farbraum
-        Ausgabe: Ein Tupel mit der in den RGB Farbraum konvertierten Farbe
-        Ihr könnt eure Implementierung auf diesen Algorithmus basieren:
-            https://de.wikipedia.org/wiki/HSV-Farbraum#Umrechnung_HSV_in_RGB
+        Eingabe: Der Wert im HSV Farbmodell
+        Ausgabe: Ein Tupel mit der in den RGB Farbmodell konvertierten Farbe
     """
-
-    # s und v auf den Bereich 0 bis 1 bringen
-    # Eingabewerte sind im Bereich von 0 bis 100
-    s = s / 100
-    v = v / 100
-
-    # Bestimmung des Grundfarbenintervalls und des Werts im Intervall
-    h_i = int(h // 60)
-    f = (h / 60 - h_i)
-
-    # Bestimmung der Hilfswerte
-    p = v * (1 - s)
-    q = v * (1 - s * f)
-    t = v * (1 - s * (1 - f))
-
-    # Konstruktion des Farbkreises zur Bestimmung der Farbe im RGB Farbraum
-    farbkreis = (
-        (v, t, p),
-        (q, v, p),
-        (p, v, t),
-        (p, q, v),
-        (t, p, v),
-        (v, p, q),
-    )
-
-    # Bestimmung der RGB Werte
-    rgb = farbkreis[h_i % 6]
-
-    # Skalierung der Farbwere vom Bereich 0 bis 1 in den Bereich 0 bis 255
-    rgb = tuple(int(k * 255) for k in rgb)
-    return rgb
-
-
-def calculate_h(r, g, b, min_value, max_value):
-    pass
+    return 0, 0, 0
 
 
 def rgb_to_hsv(r, g, b):
     """
-        Eingabe: Der Wert im RGB Farbraum
-        Ausgabe: Ein Tupel mit der in den HSV Farbraum konvertierten Farbe
-        Ihr könnt eure Implementierung auf diesem Algorithmus basieren:
-            https://de.wikipedia.org/wiki/HSV-Farbraum#Umrechnung_RGB_in_HSV/HSL
+        Eingabe: Der Wert im RGB Farbmodell
+        Ausgabe: Ein Tupel mit der in den HSV Farbmodell konvertierten Farbe
     """
-    # Wenn ihr selber implementiert, dann nehmt die nächste Zeile raus, sonst passiert nichts ;)
-    return r, g, b
-
-    # Normalisierung
-    # Wir müssen die Werte vom Bereich 0 bis 255 in den Bereich 0 bis 1 bringen
-    # r =
-    # g =
-    # b =
-
-    # Bestimmung des Minimal- und Maximalwerts
-    # min_value =
-    # max_value =
-
-    # Berechnung von h anhand der Position im Farbkreis
-    # h = calculate_h(r, g, b, min_value, max_value)
-
-    # Berechnung von s
-
-    # Berechnung von v
-    # v =
-
-    # Skalierung der Werte
-    # h ist schon im richtigen Bereich
-    # s und v von 0 bis 1 nach 0 bis 100
-    # s =
-    # v =
-    # return int(h), int(s), int(v)
-
+    return 0, 0, 0
 
 def rgb_to_hexa(r, g, b):
     """

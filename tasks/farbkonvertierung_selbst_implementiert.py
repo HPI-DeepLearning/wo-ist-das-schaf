@@ -5,7 +5,6 @@ def hsv_to_rgb(h, s, v):
         Ihr könnt eure Implementierung auf diesen Algorithmus basieren:
             https://de.wikipedia.org/wiki/HSV-Farbraum#Umrechnung_HSV_in_RGB
     """
-
     # s und v auf den Bereich 0 bis 1 bringen
     # Eingabewerte sind im Bereich von 0 bis 100
     s = s / 100
@@ -39,18 +38,8 @@ def hsv_to_rgb(h, s, v):
 
 
 def calculate_h(r, g, b, min_value, max_value):
-    if min_value == max_value:
-        h = 0
-    elif max_value == r:
-        h = 60 * ((g - b) / (max_value - min_value))
-    elif max_value == g:
-        h = 60 * (2 + ((b - r) / (max_value - min_value)))
-    else:
-        h = 60 * (4 + ((r - g) / (max_value - min_value)))
-
-    if h < 0:
-        h = h + 360
-    return h
+    # Hilfsfunktion für die RB nach HSV Berechnung
+    return 0
 
 
 def rgb_to_hsv(r, g, b):
@@ -60,33 +49,19 @@ def rgb_to_hsv(r, g, b):
     """
     # Normalisierung
     # Wir müssen die Werte vom Bereich 0 bis 255 in den Bereich 0 bis 1 bringen
-    # return 0, 0, 0
-    r = r / 255
-    g = g / 255
-    b = b / 255
 
     # Bestimmung des Minimal- und Maximalwerts
-    min_value = min(r, g, b)
-    max_value = max(r, g, b)
 
     # Berechnung von h anhand der Position im Farbkreis
-    h = calculate_h(r, g, b, min_value, max_value)
 
     # Berechnung von s
-    if max_value == 0:
-        s = 0
-    else:
-        s = (max_value - min_value) / max_value
 
     # Berechnung von v
-    v = max_value
 
     # Skalierung der Werte
     # h ist schon im richtigen Bereich
     # s und v von 0 bis nach 0 bis 100
-    s = s * 100
-    v = v * 100
-    return int(h), int(s), int(v)
+    return 0, 0, 0
 
 
 def rgb_to_hexa(r, g, b):
@@ -99,7 +74,7 @@ def rgb_to_hexa(r, g, b):
 
         Hilfe: https://www.programiz.com/python-programming/methods/built-in/hex
     """
-    return ("#%2.2x%2.2x%2.2x" % (r, g, b)).upper()
+    return "#000000"
 
 
 if __name__ == "__main__":
