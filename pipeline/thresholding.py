@@ -8,8 +8,8 @@ import libs.tkColorPicker.tkcolorpicker.colorsquare as colorsquare
 import libs.tkColorPicker.tkcolorpicker.gradientbar as gradientbar
 
 # um die eigene Implementierung zu verwenden, einfach die nächste Zeile aus- und die übernachste Zeile einkommentieren!
-# import tasks.farbkonvertierung as farbkonvertierung
-import tasks.farbkonvertierung_selbst_implementiert as farbkonvertierung
+import tasks.farbkonvertierung as farbkonvertierung
+# import tasks.farbkonvertierung_selbst_implementiert as farbkonvertierung
 
 from pipeline.no_op_pipe import NoOpPipe
 from pipeline.pipe import Pipe, PipeType

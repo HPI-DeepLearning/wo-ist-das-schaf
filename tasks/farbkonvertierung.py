@@ -1,17 +1,22 @@
 def hsv_to_rgb(h, s, v):
     """
-        Eingabe: Der Wert im HSV Farbmodell
-        Ausgabe: Ein Tupel mit der in den RGB Farbmodell konvertierten Farbe
+        Eingabe: Der Wert im HSV Farbmodell (Wertebreiche: h: 0-360, s+v: 0-100)
+        Ausgabe: Ein Tupel mit der in den RGB Farbmodell konvertierten Farbe (Wertebereiche: r+g+b: 0-255)
+        Findet eine Bibliothek im Internet, mit der ihr die Farbkonvertierung durchführen könnt.
+        Sucht doch mal bei Google ;)
     """
     return 0, 0, 0
 
 
 def rgb_to_hsv(r, g, b):
     """
-        Eingabe: Der Wert im RGB Farbmodell
-        Ausgabe: Ein Tupel mit der in den HSV Farbmodell konvertierten Farbe
+        Eingabe: Der Wert im RGB Farbmodell (Wertebereiche: r+g+b: 0-255)
+        Ausgabe: Ein Tupel mit der in den HSV Farbmodell konvertierten Farbe (Wertebreiche: h: 0-360, s+v: 0-100)
+        Findet eine Bibliothek im Internet, mit der ihr die Farbkonvertierung durchführen könnt.
+        Sucht doch mal bei Google ;)
     """
     return 0, 0, 0
+
 
 def rgb_to_hexa(r, g, b):
     """

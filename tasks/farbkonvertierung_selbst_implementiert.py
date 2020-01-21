@@ -1,7 +1,7 @@
 def hsv_to_rgb(h, s, v):
     """
-        Eingabe: Der Wert im HSV Farbraum
-        Ausgabe: Ein Tupel mit der in den RGB Farbraum konvertierten Farbe
+        Eingabe: Der Wert im HSV Farbmodell (Wertebreiche: h: 0-360, s+v: 0-100)
+        Ausgabe: Ein Tupel mit der in den RGB Farbmodell konvertierten Farbe (Wertebereiche: r+g+b: 0-255)
         Ihr könnt eure Implementierung auf diesen Algorithmus basieren:
             https://de.wikipedia.org/wiki/HSV-Farbraum#Umrechnung_HSV_in_RGB
     """
@@ -38,14 +38,16 @@ def hsv_to_rgb(h, s, v):
 
 
 def calculate_h(r, g, b, min_value, max_value):
-    # Hilfsfunktion für die RB nach HSV Berechnung
+    # Hilfsfunktion für die RGB nach HSV Berechnung
     return 0
 
 
 def rgb_to_hsv(r, g, b):
     """
-        Eingabe: Der Wert im RGB Farbraum
-        Ausgabe: Ein Tupel mit der in den HSV Farbraum konvertierten Farbe
+        Eingabe: Der Wert im RGB Farbmodell (Wertebereiche: r+g+b: 0-255)
+        Ausgabe: Ein Tupel mit der in den HSV Farbmodell konvertierten Farbe (Wertebreiche: h: 0-360, s+v: 0-100)
+        Ihr könnt eure Implementierung auf diesen Algorithmus basieren:
+            https://de.wikipedia.org/wiki/HSV-Farbraum#Umrechnung_RGB_in_HSV/HSL
     """
     # Normalisierung
     # Wir müssen die Werte vom Bereich 0 bis 255 in den Bereich 0 bis 1 bringen
