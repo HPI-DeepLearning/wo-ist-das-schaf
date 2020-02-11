@@ -42,10 +42,10 @@ if __name__ == "__main__":
         ((7, 6, 11), "#07060b"),
     )
 
-    for rgb, hex in number_hex_pairs:
+    for rgb, hex_value in number_hex_pairs:
         result = rgb_to_hexa(*rgb)
-        if not result == hex:
-            print(f"Fehler: RGB={rgb} sollte in Hexadezimal '{hex}' sein. Stattdessen war das Ergebnis: '{result}'")
+        if not result == hex_value:
+            print(f"Fehler: RGB={rgb} sollte in Hexadezimal '{hex_value}' sein. Stattdessen war das Ergebnis: '{result}'")
 
 
     def are_arrays_equal(a1, a2, tol=2):
