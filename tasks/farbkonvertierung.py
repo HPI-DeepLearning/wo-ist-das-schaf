@@ -34,8 +34,22 @@ def rgb_to_hexa(r, g, b):
 if __name__ == "__main__":
     # Einfache Tests
 
-    def assert_arrays_equal(a1, a2, tol=2):
-        assert all([abs(x - y) <= tol for x, y in zip(a1, a2)]), "{} != {}".format(a1, a2)
+    number_hex_pairs = (
+        ((0, 0, 0), "#000000"),
+        ((0, 0, 255), "#0000ff"),
+        ((255, 255, 255), "#ffffff"),
+        ((120, 168, 17), "#78a811"),
+        ((7, 6, 11), "#07060b"),
+    )
+
+    for rgb, hex in number_hex_pairs:
+        result = rgb_to_hexa(*rgb)
+        if not result == hex:
+            print(f"Fehler: RGB={rgb} sollte in Hexadezimal '{hex}' sein. Stattdessen war das Ergebnis: '{result}'")
+
+
+    def are_arrays_equal(a1, a2, tol=2):
+        return all([abs(x - y) <= tol for x, y in zip(a1, a2)])
 
     rgb_hsv_pairs = (
         ((255, 0, 0), (0, 100, 100)),
@@ -48,6 +62,8 @@ if __name__ == "__main__":
 
     for rgb, hsv in rgb_hsv_pairs:
         test_hsv = rgb_to_hsv(*rgb)
-        assert_arrays_equal(hsv, test_hsv)
+        if not are_arrays_equal(hsv, test_hsv):
+            print(f"Fehler: Für RGB={rgb} sollte HSV={hsv} herauskommen. Stattdessen war das Ergebnis: {test_hsv}")
         test_rgb = hsv_to_rgb(*hsv)
-        assert_arrays_equal(rgb, test_rgb)
+        if not are_arrays_equal(rgb, test_rgb):
+            print(f"Fehler: Für HSV={hsv} sollte RGB={rgb} herauskommen. Stattdessen war das Ergebnis: {test_rgb}")
