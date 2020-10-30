@@ -1,3 +1,14 @@
+import colorsys
+
+
+def skaliere_zu_float(wert, maximaler_wert):
+    return wert / maximaler_wert
+
+
+def skaliere_zu_int(wert, maximaler_wert):
+    return int(round(wert * maximaler_wert))
+
+
 def hsv_to_rgb(h, s, v):
     """
         Eingabe: Der Wert im HSV Farbmodell (Wertebreiche: h: 0-360, s+v: 0-100)
@@ -5,7 +16,11 @@ def hsv_to_rgb(h, s, v):
         Findet eine Bibliothek im Internet, mit der ihr die Farbkonvertierung durchführen könnt.
         Sucht doch mal bei Google ;)
     """
-    return 0, 0, 0
+    r, g, b = colorsys.hsv_to_rgb(skaliere_zu_float(h, 360),
+                                  skaliere_zu_float(s, 100),
+                                  skaliere_zu_float(v, 100))
+
+    return skaliere_zu_int(r, 255), skaliere_zu_int(g, 255), skaliere_zu_int(b, 255)
 
 
 def rgb_to_hsv(r, g, b):
@@ -15,20 +30,24 @@ def rgb_to_hsv(r, g, b):
         Findet eine Bibliothek im Internet, mit der ihr die Farbkonvertierung durchführen könnt.
         Sucht doch mal bei Google ;)
     """
-    return 0, 0, 0
+    h, s, v = colorsys.rgb_to_hsv(skaliere_zu_float(r, 255), skaliere_zu_float(g, 255), skaliere_zu_float(b, 255))
+    return skaliere_zu_int(h, 360), skaliere_zu_int(s, 100), skaliere_zu_int(v, 100)
 
 
 def rgb_to_hexa(r, g, b):
-    """
-        Eingabe: Der Wert im RGB Farbraum
-        Ausgabe: Ein String mit der aktuellen Farbe als Hexadezimale Zahl
-        Beispiel:
-            Schwarz hat den Wert (0, 0, 0) in RGB, also wäre die Ausgabe #000000
-            Weiß hat den Wert (255, 255, 255) in RGB, also wäre die Ausgabe #ffffff
+    r_hex = hex(r)[2:]
+    if len(r_hex) == 1:
+        r_hex = "0" + r_hex
 
-        Hilfe: https://www.programiz.com/python-programming/methods/built-in/hex
-    """
-    return "#000000"
+    g_hex = hex(g)[2:]
+    if len(g_hex) == 1:
+        g_hex = "0" + g_hex
+
+    b_hex = hex(b)[2:]
+    if len(b_hex) == 1:
+        b_hex = "0" + b_hex
+
+    return "#" + r_hex + g_hex + b_hex
 
 
 if __name__ == "__main__":

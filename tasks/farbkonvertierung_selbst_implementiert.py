@@ -39,7 +39,18 @@ def hsv_to_rgb(h, s, v):
 
 def calculate_h(r, g, b, min_value, max_value):
     # Hilfsfunktion für die RGB nach HSV Berechnung
-    return 0
+    if min_value == max_value:
+        h = 0
+    elif max_value == r:
+        h = 60 * ((g - b) / (max_value - min_value))
+    elif max_value == g:
+        h = 60 * (2 + ((b - r) / (max_value - min_value)))
+    else:
+        h = 60 * (4 + ((r - g) / (max_value - min_value)))
+
+    if h < 0:
+        h = h + 360
+    return h
 
 
 def rgb_to_hsv(r, g, b):
@@ -51,39 +62,39 @@ def rgb_to_hsv(r, g, b):
     """
     # Normalisierung
     # Wir müssen die Werte vom Bereich 0 bis 255 in den Bereich 0 bis 1 bringen
+    # return 0, 0, 0
+    r = r / 255
+    g = g / 255
+    b = b / 255
 
     # Bestimmung des Minimal- und Maximalwerts
+    min_value = min(r, g, b)
+    max_value = max(r, g, b)
 
     # Berechnung von h anhand der Position im Farbkreis
+    h = calculate_h(r, g, b, min_value, max_value)
 
     # Berechnung von s
+    if max_value == 0:
+        s = 0
+    else:
+        s = (max_value - min_value) / max_value
 
     # Berechnung von v
+    v = max_value
 
     # Skalierung der Werte
     # h ist schon im richtigen Bereich
     # s und v von 0 bis nach 0 bis 100
-    return 0, 0, 0
-
-
-def rgb_to_hexa(r, g, b):
-    """
-        Eingabe: Der Wert im RGB Farbraum
-        Ausgabe: Ein String mit der aktuellen Farbe als Hexadezimale Zahl
-        Beispiel:
-            Schwarz hat den Wert (0, 0, 0) in RGB, also wäre die Ausgabe #000000
-            Weiß hat den Wert (255, 255, 255) in RGB, also wäre die Ausgabe #ffffff
-
-        Hilfe: https://www.programiz.com/python-programming/methods/built-in/hex
-    """
-    return "#000000"
+    s = s * 100
+    v = v * 100
+    return int(h), int(s), int(v)
 
 
 if __name__ == "__main__":
     # Einfache Tests
-
-    def assert_arrays_equal(a1, a2, tol=2):
-        assert all([abs(x - y) <= tol for x, y in zip(a1, a2)]), "{} != {}".format(a1, a2)
+    def are_arrays_equal(a1, a2, tol=2):
+        return all([abs(x - y) <= tol for x, y in zip(a1, a2)])
 
     rgb_hsv_pairs = (
         ((255, 0, 0), (0, 100, 100)),
@@ -96,6 +107,8 @@ if __name__ == "__main__":
 
     for rgb, hsv in rgb_hsv_pairs:
         test_hsv = rgb_to_hsv(*rgb)
-        assert_arrays_equal(hsv, test_hsv)
+        if not are_arrays_equal(hsv, test_hsv):
+            print(f"Fehler: Für RGB={rgb} sollte HSV={hsv} herauskommen. Stattdessen war das Ergebnis: {test_hsv}")
         test_rgb = hsv_to_rgb(*hsv)
-        assert_arrays_equal(rgb, test_rgb)
+        if not are_arrays_equal(rgb, test_rgb):
+            print(f"Fehler: Für HSV={hsv} sollte RGB={rgb} herauskommen. Stattdessen war das Ergebnis: {test_rgb}")
