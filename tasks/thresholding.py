@@ -1,25 +1,26 @@
+from functools import reduce
+
 import numpy as np
 
 
 def threshold(image, min_values, max_values):
-    """
-        Berechne den Threshold eines Bildes, welches aus aus drei Kanälen besteht.
-        Wir arbeiten hier mit den Kanälen Hue, Saturatio und Value.
+    # create a thresholded image based on min values and max values for each channel
 
-        Shape des Bildes: [höhe, breite, Anzahl der Kanäle]
-        min_values: Array mit jeweils einer Zahl für den Minimalwert pro Farbkanal
-        max_values: Array mit jeweils einer Zahl für den Maximalwert pro Farbkanal
+    channel_thresholds = []
+    for channel in range(image.shape[-1]):
+        thresholded = np.bitwise_and(min_values[channel] <= image[:, :, channel], image[:, :, channel] <= max_values[channel])
+        channel_thresholds.append(thresholded)
 
-        Rückgabe:
-        Ein Array, wo jeder Pixel den Wert 0 oder 1 hat.
-        Ein Pixel bekommt den Wert 1, wenn der Wert in allen Kanälen zwischen dem minimum und dem maximum liegt, ansonsten wird er 0.
-        Beispiel: Wir haben ein Bild mit zwei Pixeln und folgende Werte für Minimal- und Maximalwert:
-        image: [[100, 150, 80], [0, 20, 100]]
-        min_values: [40, 10, 50]
-        max_values: [110, 200, 120]
+    return reduce(lambda x, y: np.bitwise_and(x, y), channel_thresholds, np.ones_like(image[:, :, 0]))
 
-        Ausgabe der Funktion: [1, 0].
 
-        Wir geben also ein Bild mit nur einem Kanal zurück!
-    """
-    return image
+def naive_threshold(image, min_values, max_values):
+    height, width, num_channels = image.shape
+    thresholded_image = np.zeros((height, width), dtype=image.dtype)
+
+    for y in range(height):
+        for x in range(width):
+            do_threshold = all([min_values[c] <= image[y, x, c] <= max_values[c] for c in range(num_channels)])
+            thresholded_image[y, x] = do_threshold
+
+    return thresholded_image
